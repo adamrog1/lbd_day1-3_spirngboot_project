@@ -11,8 +11,7 @@ public class SprintsEntity {
     @Column(name = "id", nullable = false)
     private Long id;
 
-    public SprintsEntity(Long id, String name, String description, Date start_date, Date end_date, SprintStatus status) {
-        this.id = id;
+    public SprintsEntity( String name, String description, Date start_date, Date end_date, SprintStatus status) {
         this.name = name;
         this.description = description;
         this.start_date = start_date;

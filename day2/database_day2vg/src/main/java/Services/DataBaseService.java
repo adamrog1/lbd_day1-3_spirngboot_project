@@ -1,20 +1,17 @@
 package Services;
 
-import Entity.SprintStatus;
-import Entity.SprintsEntity;
-import Entity.UserStoriesEntity;
-import Entity.UserStoriesStatus;
+import Entity.*;
+import Repositories.ReferencesRepository;
 import Repositories.SprintRepository;
 import Repositories.UserStoriesRepository;
-import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 
 @Service
 public class DataBaseService {
@@ -26,6 +23,9 @@ public class DataBaseService {
 
     @Autowired
     private UserStoriesRepository userStoriesRepository;
+
+    @Autowired
+    private ReferencesRepository referencesRepository;
 
 
     private boolean ifContainsEnum(String s){
@@ -58,8 +58,14 @@ public class DataBaseService {
     }
 
     public void getUserStories(Long id){
-        SprintsEntity entity= sprintRepository.findById(id).get();
-        
+        Iterable<ReferencesEntity> found=new ArrayList<>();
+        ArrayList<Long> userStoriesIds=new ArrayList<>();
+        SprintsEntity sprintsEntity= sprintRepository.findById(id).get();
+        found= referencesRepository.findAllById(Collections.singleton(sprintsEntity.getId()));
+        for(ReferencesEntity f: found){
+            userStoriesIds.add(f.getUser_stories_id());
+        }
+        userStoriesRepository.findAllById(userStoriesIds).forEach(entity -> System.out.println(entity.toString()));
 
     }
 
@@ -71,8 +77,18 @@ public class DataBaseService {
 
     }
 
-//    public int getStoryPoints(SprintsEntity entity){
-//        if(entity.getStatus())
-//    }
+    public int getStoryPoints(SprintsEntity entity){
+        Iterable<ReferencesEntity> found=new ArrayList<>();
+        ArrayList<Long> userStoriesIds=new ArrayList<>();
+        SprintsEntity sprintsEntity= sprintRepository.findById(entity.getId()).get();
+        found= referencesRepository.findAllById(Collections.singleton(sprintsEntity.getId()));
+        for(ReferencesEntity f: found){
+            userStoriesIds.add(f.getUser_stories_id());
+        }
+        AtomicInteger sum= new AtomicInteger();
+        userStoriesRepository.findAllById(userStoriesIds).forEach(entity1 -> sum.addAndGet(
+        entity1.getStory_points()));
+        return sum.intValue();
+    }
 
 }

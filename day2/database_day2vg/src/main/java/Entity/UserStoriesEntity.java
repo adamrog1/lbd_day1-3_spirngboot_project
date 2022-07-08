@@ -7,10 +7,11 @@ import javax.persistence.*;
 public class UserStoriesEntity {
     @Id
     @Column(name = "id", nullable = false)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    public UserStoriesEntity(Long id, String name, String description, UserStoriesStatus status, byte attachments, int story_points) {
-        this.id = id;
+    public UserStoriesEntity( String name, String description, UserStoriesStatus status, byte attachments, int story_points) {
+
         this.name = name;
         this.description = description;
         this.status = status;
@@ -71,5 +72,10 @@ public class UserStoriesEntity {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    @Override
+    public String toString(){
+        return id+ " " + name+ " " + description+ " " + status;
     }
 }

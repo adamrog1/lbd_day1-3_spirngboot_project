@@ -24,9 +24,9 @@ class DatabaseDay2ApplicationTests {
     void testSavingEntity(){
         Date start_date=new Date(2020,1,20);
         Date end_date=new Date(2020,6,21);
-        SprintsEntity sprintsEntity=new SprintsEntity
-                (1L,"ta","fajne",start_date,end_date,"", SprintStatus.Pending);
-        UserStoriesEntity userStories=new UserStoriesEntity(1L,"awr", "123123ded", UserStoriesStatus.Done, (byte) 1,12,"1f1ef");
+        SprintsEntity sprintsEntity=new SprintsEntity("ta","no",start_date,end_date,SprintStatus.Pending);
+
+        UserStoriesEntity userStories=new UserStoriesEntity("aw","raw",UserStoriesStatus.To_do,(byte)1,2);
         DataBaseService dataBaseService=new DataBaseService();
 
         dataBaseService.saveNewUserStory(userStories);
