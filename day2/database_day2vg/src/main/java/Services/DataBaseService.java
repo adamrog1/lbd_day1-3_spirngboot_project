@@ -6,9 +6,15 @@ import Entity.UserStoriesEntity;
 import Entity.UserStoriesStatus;
 import Repositories.SprintRepository;
 import Repositories.UserStoriesRepository;
+import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
+
+import java.sql.Date;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 @Service
 public class DataBaseService {
@@ -42,12 +48,31 @@ public class DataBaseService {
 
             sprintRepository.save(entity);
         }
+    }
+
+    public void saveNewUserStory(UserStoriesEntity entity){
+        if(entity.getId()!=null && entity.getName()!=null && entity.getDescription()!=null){
+            if(entity.getStatus()==null) entity.setUserStoriesStatus(UserStoriesStatus.To_do);
+            userStoriesRepository.save(entity);
+        }
+    }
+
+    public void getUserStories(Long id){
+        SprintsEntity entity= sprintRepository.findById(id).get();
+        
 
     }
 
-    public void saveNewUserStories(UserStoriesEntity entity){
-        userStoriesRepository.save(entity);
+    public List<SprintsEntity> getSprintsByDate(java.sql.Date from, Date to){
+        List<SprintsEntity> entities = new ArrayList<>();
+        sprintRepository.findAll().forEach(entities::add);
+        entities.removeIf(e -> e.getStart_date().compareTo(from) > 0 || e.getStart_date().compareTo(to) < 0);
+        return entities;
+
     }
 
+//    public int getStoryPoints(SprintsEntity entity){
+//        if(entity.getStatus())
+//    }
 
 }

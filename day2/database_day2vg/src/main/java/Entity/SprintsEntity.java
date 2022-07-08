@@ -11,13 +11,13 @@ public class SprintsEntity {
     @Column(name = "id", nullable = false)
     private Long id;
 
-    public SprintsEntity(Long id, String name, String description, Date start_date, Date end_date, String user_stories, SprintStatus status) {
+    public SprintsEntity(Long id, String name, String description, Date start_date, Date end_date, SprintStatus status) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.start_date = start_date;
         this.end_date = end_date;
-        this.user_stories = user_stories;
+
         this.status = status;
     }
 
@@ -33,8 +33,6 @@ public class SprintsEntity {
     @Column(name = "end_date")
     private Date end_date;
 
-    @Column(name="user_stories")
-    private String user_stories;
 
     @Column(name = "status")
     @Enumerated(EnumType.STRING)
@@ -90,11 +88,4 @@ public class SprintsEntity {
     }
 
 
-    public String getUser_stories() {
-        return user_stories;
-    }
-
-    public void setUser_stories(String user_stories) {
-        this.user_stories = user_stories;
-    }
 }
