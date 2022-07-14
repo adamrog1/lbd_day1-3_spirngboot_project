@@ -1,15 +1,21 @@
-package Entity;
+package com.example.database_day2.Entity;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.util.HashSet;
+import java.util.Set;
 
-@Entity(name = "Sprints")
+@Entity
+@Table(name = "Sprints")
 public class SprintsEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id", nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "sprints_id", nullable = false)
     private Long id;
+
 
     public SprintsEntity( String name, String description, Date start_date, Date end_date, SprintStatus status) {
         this.name = name;
@@ -20,10 +26,26 @@ public class SprintsEntity {
         this.status = status;
     }
 
+
+    @ManyToMany
+    @JoinTable(name = "SprintsStories"
+    ,joinColumns = @JoinColumn(name="sprints_id"),
+    inverseJoinColumns = @JoinColumn(name = "user_stories_id")
+    )
+    @JsonIgnore
+    private Set<UserStoriesEntity> UserStories=new HashSet<>();
     @Column(name = "name")
     private String name;
 
-    @Column(name= "description")
+    public Set<UserStoriesEntity> getUserStories() {
+        return UserStories;
+    }
+
+    public void setUserStories(Set<UserStoriesEntity> userStories) {
+        UserStories = userStories;
+    }
+
+    @Column(name= "description_of_aim")
     private String description;
 
     @Column(name = "start_date")
@@ -45,8 +67,8 @@ public class SprintsEntity {
         return id;
     }
 
-    public String getStatus(){
-        return status.toString();
+    public SprintStatus getStatus(){
+        return status;
     }
 
 
@@ -84,6 +106,10 @@ public class SprintsEntity {
 
     public void setEnd_date(Date end_date) {
         this.end_date = end_date;
+    }
+
+    public void addUserStory(UserStoriesEntity userStories){
+        UserStories.add(userStories);
     }
 
 

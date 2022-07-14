@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="1b88bea8-c083-4849-9eba-c0eebe1fc828" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../database_day2vg/src/main/java/com/example/database_day2/Controllers/TestController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../database_day2vg/src/main/java/Entity/ReferencesEntity.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../database_day2vg/src/main/java/Entity/SprintStatus.java" beforeDir="false" afterPath="$PROJECT_DIR$/../database_day2vg/src/main/java/com/example/database_day2/Entity/SprintStatus.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../database_day2vg/src/main/java/Entity/SprintsEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/../database_day2vg/src/main/java/com/example/database_day2/Entity/SprintsEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../database_day2vg/src/main/java/Entity/UserStoriesEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/../database_day2vg/src/main/java/com/example/database_day2/Entity/UserStoriesEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../database_day2vg/src/main/java/Entity/UserStoriesStatus.java" beforeDir="false" afterPath="$PROJECT_DIR$/../database_day2vg/src/main/java/com/example/database_day2/Entity/UserStoriesStatus.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../database_day2vg/src/main/java/Repositories/ReferencesRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../database_day2vg/src/main/java/Repositories/SprintRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../database_day2vg/src/main/java/com/example/database_day2/Repositories/SprintRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../database_day2vg/src/main/java/Repositories/UserStoriesRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../database_day2vg/src/main/java/com/example/database_day2/Repositories/UserStoriesRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../database_day2vg/src/main/java/Services/DataBaseService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../database_day2vg/src/main/java/com/example/database_day2/Services/DataBaseService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../database_day2vg/src/main/java/Services/GenerateNewUserStories.java" beforeDir="false" afterPath="$PROJECT_DIR$/../database_day2vg/src/main/java/com/example/database_day2/Services/GenerateNewUserStories.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../database_day2vg/src/main/java/com/example/database_day2/DatabaseDay2Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/../database_day2vg/src/main/java/com/example/database_day2/DatabaseDay2Application.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../database_day2vg/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../database_day2vg/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../database_day2vg/src/main/resources/data.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../database_day2vg/src/main/resources/schema.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../database_day2vg/src/test/java/com/example/database_day2/DatabaseDay2ApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/../database_day2vg/src/test/java/com/example/database_day2/DatabaseDay2ApplicationTests.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2BqF9euHmCe5N11O1P3vwnOqpYb" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false"
+  }
+}]]></component>
+  <component name="RunManager">
+    <configuration name="Demo1Application" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="demo1" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.demo.Demo1Application" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="1b88bea8-c083-4849-9eba-c0eebe1fc828" name="Changes" comment="" />
+      <created>1657625567992</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1657625567992</updated>
+      <workItem from="1657625569352" duration="1245000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>

@@ -1,28 +1,35 @@
-package Entity;
+package com.example.database_day2.Entity;
 
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
-@Entity(name = "UserStories")
+@Entity
+@Table(name = "UserStories")
 public class UserStoriesEntity {
     @Id
-    @Column(name = "id", nullable = false)
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "user_stories_id", nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     public UserStoriesEntity( String name, String description, UserStoriesStatus status, byte attachments, int story_points) {
-
         this.name = name;
         this.description = description;
         this.status = status;
         this.attachments = attachments;
         this.story_points = story_points;
     }
+    @JsonIgnore
+    @ManyToMany(mappedBy = "UserStories")
+    private Set<SprintsEntity> sprintsSet=new HashSet<>();
 
     @Column(name="name")
     private String name;
 
-    @Column(name="decription")
+    @Column(name="description")
     private String description;
 
     @Column(name = "status")
@@ -49,8 +56,9 @@ public class UserStoriesEntity {
         return description;
     }
 
-    public String getStatus() {
-        return status.toString();
+    public UserStoriesStatus getStatusIfNull() {
+        if(status==null)  return status= UserStoriesStatus.valueOf(UserStoriesStatus.In_progress.toString());
+        else  return status;
     }
 
     public void setUserStoriesStatus(UserStoriesStatus status){
@@ -72,6 +80,14 @@ public class UserStoriesEntity {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Set<SprintsEntity> getSprintsSet() {
+        return sprintsSet;
+    }
+
+    public void setSprintsSet(Set<SprintsEntity> sprintsSet) {
+        this.sprintsSet = sprintsSet;
     }
 
     @Override

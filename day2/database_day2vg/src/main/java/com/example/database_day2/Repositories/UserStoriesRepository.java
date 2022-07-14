@@ -1,6 +1,6 @@
-package Repositories;
+package com.example.database_day2.Repositories;
 
-import Entity.UserStoriesEntity;
+import com.example.database_day2.Entity.UserStoriesEntity;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
