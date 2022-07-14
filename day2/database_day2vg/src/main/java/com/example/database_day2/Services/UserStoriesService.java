@@ -58,12 +58,13 @@ public class UserStoriesService {
         return null;
     }
 
+    public String getUserStoryDescription(Long id){
+        StoryDto storyDto=convertService.convertEntityToDTO(userStoriesRepository.findById(id).get());
+        return storyDto.getDescription();
+    }
 
-
-    @Transactional
-    public void getUserStoriesBySprintId(Long id){
-
-
+    public void setNewAttachemnt(Long id,Byte bajt){
+        userStoriesRepository.findById(id).get().setAttachments(bajt);
     }
 
     public List<SprintsEntity> getSprintsByDate(java.sql.Date from, Date to){

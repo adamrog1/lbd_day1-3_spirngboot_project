@@ -72,8 +72,6 @@ public class UserStoriesEntity {
         return story_points;
     }
 
-
-
     public Long getId() {
         return id;
     }
@@ -90,6 +88,9 @@ public class UserStoriesEntity {
         this.sprintsSet = sprintsSet;
     }
 
+    public void setAttachments(byte attachments) {
+        this.attachments = attachments;
+    }
     @Override
     public String toString(){
         return id+ " " + name+ " " + description+ " " + status;
