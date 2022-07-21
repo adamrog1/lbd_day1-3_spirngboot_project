@@ -2,8 +2,10 @@ package com.example.database_day2.Entity;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.yaml.snakeyaml.util.ArrayUtils;
 
 import javax.persistence.*;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -15,7 +17,7 @@ public class UserStoriesEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    public UserStoriesEntity( String name, String description, UserStoriesStatus status, byte attachments, int story_points) {
+    public UserStoriesEntity( String name, String description, UserStoriesStatus status, byte[] attachments, int story_points) {
         this.name = name;
         this.description = description;
         this.status = status;
@@ -37,8 +39,8 @@ public class UserStoriesEntity {
     private UserStoriesStatus status;
 
     @Column(name= "attachments")
-    private byte attachments;
-
+    @Lob
+    private byte[] attachments;
     @Column(name="story_points")
     private int story_points;
 
@@ -64,7 +66,7 @@ public class UserStoriesEntity {
     public void setUserStoriesStatus(UserStoriesStatus status){
         this.status=status;
     }
-    public byte getAttachments() {
+    public byte[]  getAttachments() {
         return attachments;
     }
 
@@ -88,9 +90,10 @@ public class UserStoriesEntity {
         this.sprintsSet = sprintsSet;
     }
 
-    public void setAttachments(byte attachments) {
-        this.attachments = attachments;
+    public void setAttachments(byte[] attachments) {
+        this.attachments=attachments;
     }
+
     @Override
     public String toString(){
         return id+ " " + name+ " " + description+ " " + status;

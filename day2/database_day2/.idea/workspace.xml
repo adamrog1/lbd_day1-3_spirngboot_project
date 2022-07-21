@@ -4,30 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="aba40201-c2d6-4c97-ba5d-e7a07d88412f" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../../.gitattributes" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../.mvn/wrapper/maven-wrapper.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../lib/javax.ejb.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../lib/javax.jms.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../lib/javax.persistence.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../lib/javax.resource.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../lib/javax.servlet.jsp.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../lib/javax.servlet.jsp.jstl.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../lib/javax.transaction.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../mvnw" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../mvnw.cmd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../src/main/java/Entity/Employee/Employee.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../src/main/java/Service/employee/EmployeeService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../src/main/java/Service/employee/Import_class_one.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../src/main/java/Service/employee/Import_class_two.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/example/lbddemo/HelloController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/example/lbddemo/LbdDemoApplication.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../src/main/resources/application.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../src/test/java/com/example/lbddemo/LbdDemoApplicationTests.java" beforeDir="false" />
-    </list>
+    <list default="true" id="aba40201-c2d6-4c97-ba5d-e7a07d88412f" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -57,19 +34,19 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Users/arogalski/IdeaProjects/lbd_demo/lbd_day1_project/day2/database_day2vg",
-    "spring.configuration.checksum": "4d5565223507c6d070a3fdb3948e1f64"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/arogalski/IdeaProjects/lbd_demo/lbd_day1_project/day2/database_day2vg&quot;,
+    &quot;spring.configuration.checksum&quot;: &quot;4d5565223507c6d070a3fdb3948e1f64&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="DatabaseDay2Application" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="database_day2" />
@@ -90,6 +67,7 @@
       <workItem from="1657183257632" duration="109000" />
       <workItem from="1657183381447" duration="238000" />
       <workItem from="1657183638136" duration="37000" />
+      <workItem from="1657883340296" duration="23000" />
     </task>
     <servers />
   </component>

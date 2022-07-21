@@ -6,13 +6,15 @@ import com.example.database_day2.Repositories.UserStoriesRepository;
 import com.example.database_day2.Entity.*;
 import com.example.database_day2.dto.StoryDto;
 import org.apache.catalina.User;
+import org.springframework.data.domain.PageRequest;
+import java.awt.print.Pageable;
+
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.transaction.Transactional;
-import java.sql.Date;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.*;
+import java.io.IOException;
+import java.util.*;
 
 @Service
 public class UserStoriesService {
@@ -24,7 +26,8 @@ public class UserStoriesService {
     private UserStoriesRepository userStoriesRepository;
     private ConvertService convertService;
 
-    public UserStoriesService(SprintRepository sprintRepository, UserStoriesRepository userStoriesRepository, ConvertService convertService){
+    public UserStoriesService(SprintRepository sprintRepository, UserStoriesRepository userStoriesRepository,
+                              ConvertService convertService){
         this.sprintRepository=sprintRepository;
         this.userStoriesRepository=userStoriesRepository;
         this.convertService=convertService;
@@ -35,7 +38,8 @@ public class UserStoriesService {
                  userStoriesRepository.findAll();
     }
 
-    public List<StoryDto> convertAll(){
+    public List<StoryDto> findAndconvertAll(){
+
         List<StoryDto> storyDtos=new ArrayList<>();
         for(UserStoriesEntity entity: findAll()){
             storyDtos.add(convertService.convertEntityToDTO(entity));
@@ -44,8 +48,7 @@ public class UserStoriesService {
     }
 
     public List<StoryDto> getAllStories(){
-
-        return  convertAll();
+        return  findAndconvertAll();
     }
 
     @Transactional
@@ -63,17 +66,33 @@ public class UserStoriesService {
         return storyDto.getDescription();
     }
 
-    public void setNewAttachemnt(Long id,Byte bajt){
-        userStoriesRepository.findById(id).get().setAttachments(bajt);
-    }
-
-    public List<SprintsEntity> getSprintsByDate(java.sql.Date from, Date to){
-        List<SprintsEntity> entities = new ArrayList<>();
-        sprintRepository.findAll().forEach(entities::add);
-        entities.removeIf(e -> e.getStart_date().compareTo(from) > 0 || e.getStart_date().compareTo(to) < 0);
-        return entities;
+    public void setNewAttachemnt(Long id, MultipartFile file) throws IOException {
+        byte [] byteArr=file.getBytes();
+        UserStoriesEntity entity;
+        entity= userStoriesRepository.findById(id).get();
+        entity.setAttachments(byteArr);
+        userStoriesRepository.save(entity);
 
     }
+    public void deleteStory(Long id){
+        userStoriesRepository.deleteById(id);
+    }
+//TODO
+//    public List<StoryDto> getSortedStoriesByName(int pageSize){
+//        Pageable pageable= (Pageable) PageRequest.of(0,pageSize);
+//        List<UserStoriesEntity> us=userStoriesRepository.findAllWithPage(pageable);
+//
+//        us= findAll().stream().sorted(Comparator.comparing(UserStoriesEntity::getName)).toList();
+//        List<StoryDto> storyDtos=new ArrayList<>();
+//        for(UserStoriesEntity userStories:us){
+//           storyDtos.add(convertService.convertEntityToDTO(userStories));
+//        }
+//
+//        return storyDtos;
+
+//    }
+
+
 
 //    public int getStoryPoints(SprintsEntity entity){
 //

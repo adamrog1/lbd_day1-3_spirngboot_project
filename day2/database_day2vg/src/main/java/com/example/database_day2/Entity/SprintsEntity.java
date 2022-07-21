@@ -45,6 +45,8 @@ public class SprintsEntity {
         UserStories = userStories;
     }
 
+
+
     @Column(name= "description_of_aim")
     private String description;
 
@@ -106,6 +108,10 @@ public class SprintsEntity {
 
     public void setEnd_date(Date end_date) {
         this.end_date = end_date;
+    }
+
+    public void setStatus(SprintStatus status) {
+        this.status = status;
     }
 
     public void addUserStory(UserStoriesEntity userStories){

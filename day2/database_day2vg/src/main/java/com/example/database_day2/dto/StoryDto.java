@@ -6,25 +6,18 @@ import com.example.database_day2.Entity.UserStoriesStatus;
 import javax.persistence.Column;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
 public class StoryDto {
 
     private Long id;
-
-    @Override
-    public String toString() {
-        return "StoryDto{" +
-                "id=" + id +
-                ", name='" + name + '\'';
-    }
-
     private Set<SprintsEntity> sprintsSet=new HashSet<>();
     private String name;
     private String description;
     private UserStoriesStatus status;
-    private byte attachments;
+    private byte[]  attachments;
     private int story_points;
 
     public String getDescription() {
@@ -43,12 +36,12 @@ public class StoryDto {
         this.status = status;
     }
 
-    public byte getAttachments() {
+    public byte[]  getAttachments() {
         return attachments;
     }
 
-    public void setAttachments(byte attachments) {
-        this.attachments = attachments;
+    public void setAttachments(byte[] attachments) {
+        this.attachments=attachments;
     }
 
     public int getStory_points() {
@@ -81,5 +74,12 @@ public class StoryDto {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return "StoryDto{" +
+                "id=" + id +
+                ", name='" + name + '\'';
     }
 }

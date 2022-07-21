@@ -10,12 +10,18 @@ import com.example.database_day2.dto.SprintDto;
 import com.example.database_day2.dto.StoryDto;
 import org.apache.catalina.User;
 import org.springframework.stereotype.Service;
+import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.transaction.Transactional;
+import java.io.IOException;
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.stream.Collectors;
 
 @Service
 public class SprintService {
@@ -23,6 +29,7 @@ public class SprintService {
     private SprintRepository sprintRepository;
     private UserStoriesRepository userStoriesRepository;
     private ConvertService convertService;
+
 
     public SprintService(SprintRepository sprintRepository, UserStoriesRepository userStoriesRepository, ConvertService convertService){
         this.sprintRepository=sprintRepository;
@@ -78,6 +85,25 @@ public class SprintService {
 //            storyDtos.add( convertService.convertEntityToDTO(e));
 //        }
         return userStoriesEntities;
+    }
+
+    public SprintDto updateSprintStatus(Long id, SprintStatus status) throws IOException {
+        SprintsEntity sprintsEntity = sprintRepository.findById(id).get();
+        sprintsEntity.setStatus(status);
+        return convertService.convertEntityToDto(sprintsEntity);
+    }
+
+    public List<SprintDto> getSprintsByDate(Date dateFrom, Date dateTo){
+        List<SprintsEntity> entities = new ArrayList<>();
+        List<SprintDto> dtos=new ArrayList<>();
+        sprintRepository.findAll().forEach(entities::add);
+        for(SprintsEntity sprints: entities){
+           dtos.add(convertService.convertEntityToDto(sprints));
+        }
+        dtos.removeIf(e->e.getStart_date().before(dateFrom) );
+        dtos.removeIf(e->e.getStart_date().after(dateTo));
+        return dtos;
+
     }
 
 
