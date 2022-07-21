@@ -50,9 +50,9 @@ public class UserStoriesController {
         userStoriesService.deleteStory(id);
     }
 
-    @GetMapping("/getAllStoriesSorted/{pages}")
-    public List<StoryDto> getAllStoriesSortedByName(@PathVariable int pages){
-        return userStoriesService.getSortedStoriesByName(pages);
-    }
+//    @GetMapping("/getAllStoriesSorted/{pages}")
+//    public List<StoryDto> getAllStoriesSortedByName(@PathVariable int pages){
+//        return userStoriesService.getSortedStoriesByName(pages);
+//    }
 
 }
