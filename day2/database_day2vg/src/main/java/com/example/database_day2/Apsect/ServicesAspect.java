@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class ServicesAspect {
     Logger log = LoggerFactory.getLogger("com.example.database_day2.Services");
-    @Around("execution(* com.example.database_day2.Services.*.*()) ")
+    @Around("execution(* com.example.database_day2.Services.*.*(*)) ")
     public Object aroundLogParameters(ProceedingJoinPoint joinPoint){
         Object val=joinPoint.getArgs();
         try{
