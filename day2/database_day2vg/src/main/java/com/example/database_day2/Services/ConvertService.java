@@ -28,7 +28,7 @@ public class ConvertService {
         storyDto.setAttachments(userStories.getAttachments());
         storyDto.setStory_points(userStories.getStory_points());
         storyDto.setDescription(userStories.getDescription());
-        storyDto.setStatus(userStories.getStatusIfNull());
+        storyDto.setStatus(userStories.getStatus());
         storyDto.setSprintsSet(userStories.getSprintsSet());
         return storyDto;
     }

@@ -31,7 +31,7 @@ public class NBPController {
     }
 
     @GetMapping("/getUSDExchangeFromLast10Days")
-    public JsonObject getUSDExchangeFromLast10Days() throws  ParseException {
+    public Object getUSDExchangeFromLast10Days() throws ParseException, JsonProcessingException {
         return nbpService.getUSDExchangeFromLast10Days();
     }
 }

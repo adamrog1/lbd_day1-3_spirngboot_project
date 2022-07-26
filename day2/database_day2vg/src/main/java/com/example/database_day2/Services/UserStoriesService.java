@@ -1,26 +1,28 @@
 package com.example.database_day2.Services;
 
 
+import com.example.database_day2.Entity.UserStoriesEntity;
+import com.example.database_day2.Entity.UserStoriesStatus;
 import com.example.database_day2.Repositories.SprintRepository;
 import com.example.database_day2.Repositories.UserStoriesRepository;
-import com.example.database_day2.Entity.*;
 import com.example.database_day2.dto.StoryDto;
-import org.apache.catalina.User;
+import net.bytebuddy.utility.RandomString;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import java.awt.print.Pageable;
-
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.transaction.Transactional;
 import java.io.IOException;
-import java.util.*;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+import static java.util.stream.Collectors.toList;
 
 @Service
 public class UserStoriesService {
-
-
-
 
     private  SprintRepository sprintRepository;
     private UserStoriesRepository userStoriesRepository;
@@ -40,10 +42,8 @@ public class UserStoriesService {
 
     public List<StoryDto> findAndconvertAll(){
 
-        List<StoryDto> storyDtos=new ArrayList<>();
-        for(UserStoriesEntity entity: findAll()){
-            storyDtos.add(convertService.convertEntityToDTO(entity));
-        }
+        List<StoryDto> storyDtos;
+        storyDtos= findAll().stream().map(element->convertService.convertEntityToDTO(element)).collect(toList());
         return storyDtos;
     }
 
@@ -54,7 +54,7 @@ public class UserStoriesService {
     @Transactional
     public UserStoriesEntity saveNewUserStory(UserStoriesEntity entity){
         if(entity.getName()!=null && entity.getDescription()!=null){
-            entity.getStatusIfNull();
+            entity.getStatus();
 
             return userStoriesRepository.save(entity);
         }
@@ -77,25 +77,31 @@ public class UserStoriesService {
     public void deleteStory(Long id){
         userStoriesRepository.deleteById(id);
     }
-//TODO
-//    public List<StoryDto> getSortedStoriesByName(int pageSize){
-//        Pageable pageable= (Pageable) PageRequest.of(0,pageSize);
-//        List<UserStoriesEntity> us=userStoriesRepository.findAllWithPage(pageable);
-//
-//        us= findAll().stream().sorted(Comparator.comparing(UserStoriesEntity::getName)).toList();
-//        List<StoryDto> storyDtos=new ArrayList<>();
-//        for(UserStoriesEntity userStories:us){
-//           storyDtos.add(convertService.convertEntityToDTO(userStories));
-//        }
-//
-//        return storyDtos;
 
-//    }
+    public List<StoryDto> findAllPageAndSortByDate(Integer page, Integer size) {
 
+        Page<UserStoriesEntity> userStoriesEntities= userStoriesRepository.findAll(PageRequest.of(page, size,
+                        Sort.by("name")));
+        return userStoriesEntities.getContent().stream().map(element-> convertService.convertEntityToDTO(element)).toList();
+    }
 
+    public List<StoryDto> getUserStoriesBySprintId(Long id){
+        Set<UserStoriesEntity> userStoriesEntities;
+        userStoriesEntities= sprintRepository.findById(id).get().getUserStories();
+        System.out.println(userStoriesEntities);
+        List<StoryDto> list;
+        list=userStoriesEntities.stream().map(element-> convertService.convertEntityToDTO(element)).toList();
+        return list;
+    }
 
-//    public int getStoryPoints(SprintsEntity entity){
-//
-//    }
-
+    public void generate100randomStories(){
+        for(int i=0;i<100;i++) {
+            String generateName = RandomString.make(10);
+            String generateDescription = RandomString.make(10);
+            int points = (int) (Math.random() * 100);
+            UserStoriesEntity stories = new UserStoriesEntity(generateName, generateDescription,
+                    UserStoriesStatus.In_progress, null, points);
+            userStoriesRepository.save(stories);
+        }
+    }
 }

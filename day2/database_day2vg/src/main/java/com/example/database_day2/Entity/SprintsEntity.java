@@ -1,6 +1,7 @@
 package com.example.database_day2.Entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.annotations.Formula;
 
 import javax.persistence.*;
 import java.sql.Date;
@@ -28,24 +29,13 @@ public class SprintsEntity {
 
 
     @ManyToMany
-    @JoinTable(name = "SprintsStories"
-    ,joinColumns = @JoinColumn(name="sprints_id"),
+    @JoinTable(name = "sprint_stories"
+    ,joinColumns = @JoinColumn(name="sprint_id"),
     inverseJoinColumns = @JoinColumn(name = "user_stories_id")
     )
-    @JsonIgnore
     private Set<UserStoriesEntity> UserStories=new HashSet<>();
     @Column(name = "name")
     private String name;
-
-    public Set<UserStoriesEntity> getUserStories() {
-        return UserStories;
-    }
-
-    public void setUserStories(Set<UserStoriesEntity> userStories) {
-        UserStories = userStories;
-    }
-
-
 
     @Column(name= "description_of_aim")
     private String description;
@@ -55,7 +45,6 @@ public class SprintsEntity {
 
     @Column(name = "end_date")
     private Date end_date;
-
 
     @Column(name = "status")
     @Enumerated(EnumType.STRING)
@@ -116,6 +105,14 @@ public class SprintsEntity {
 
     public void addUserStory(UserStoriesEntity userStories){
         UserStories.add(userStories);
+    }
+
+    public Set<UserStoriesEntity> getUserStories() {
+        return UserStories;
+    }
+
+    public void setUserStories(Set<UserStoriesEntity> userStories) {
+        UserStories = userStories;
     }
 
 

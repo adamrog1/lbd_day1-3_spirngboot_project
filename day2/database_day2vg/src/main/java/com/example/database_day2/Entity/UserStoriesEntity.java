@@ -10,12 +10,8 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "UserStories")
+@Table(name = "Userstories")
 public class UserStoriesEntity {
-    @Id
-    @Column(name = "user_stories_id", nullable = false)
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
 
     public UserStoriesEntity( String name, String description, UserStoriesStatus status, byte[] attachments, int story_points) {
         this.name = name;
@@ -24,6 +20,11 @@ public class UserStoriesEntity {
         this.attachments = attachments;
         this.story_points = story_points;
     }
+
+    @Id
+    @Column(name = "user_stories_id", nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     @JsonIgnore
     @ManyToMany(mappedBy = "UserStories")
     private Set<SprintsEntity> sprintsSet=new HashSet<>();
@@ -44,56 +45,43 @@ public class UserStoriesEntity {
     @Column(name="story_points")
     private int story_points;
 
-
     public UserStoriesEntity() {
-
     }
 
     public String getName() {
         return name;
     }
-
-
     public String getDescription() {
         return description;
     }
-
-    public UserStoriesStatus getStatusIfNull() {
+    public UserStoriesStatus getStatus() {
         if(status==null)  return status= UserStoriesStatus.valueOf(UserStoriesStatus.In_progress.toString());
         else  return status;
     }
-
     public void setUserStoriesStatus(UserStoriesStatus status){
         this.status=status;
     }
     public byte[]  getAttachments() {
         return attachments;
     }
-
     public int getStory_points() {
         return story_points;
     }
-
     public Long getId() {
         return id;
     }
-
     public void setId(Long id) {
         this.id = id;
     }
-
     public Set<SprintsEntity> getSprintsSet() {
         return sprintsSet;
     }
-
     public void setSprintsSet(Set<SprintsEntity> sprintsSet) {
         this.sprintsSet = sprintsSet;
     }
-
     public void setAttachments(byte[] attachments) {
         this.attachments=attachments;
     }
-
     @Override
     public String toString(){
         return id+ " " + name+ " " + description+ " " + status;

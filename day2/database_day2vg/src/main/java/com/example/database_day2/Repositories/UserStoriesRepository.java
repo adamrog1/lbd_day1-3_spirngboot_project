@@ -11,6 +11,6 @@ import java.awt.print.Pageable;
 import java.util.List;
 
 @Repository
-public interface UserStoriesRepository extends CrudRepository<UserStoriesEntity,Long> {
+public interface UserStoriesRepository extends PagingAndSortingRepository<UserStoriesEntity,Long> {
 
 }

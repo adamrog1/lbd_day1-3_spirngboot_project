@@ -15,42 +15,33 @@ import org.springframework.web.method.annotation.MethodArgumentTypeMismatchExcep
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
 @RestController
 public class SpirntController {
-
-    @Autowired
-    private ModelMapper modelMapper;
     @Autowired
     SprintService sprintService;
 
-
-    private HttpServletResponse httpServletResponse;
-
     @PostMapping("/addSprint")
-    public SprintsEntity addSprint(@RequestBody SprintsEntity sprint){
+    public SprintsEntity addSprint(@RequestBody SprintsEntity sprint) throws SQLException {
         return sprintService.saveNewSprint(sprint);
     }
 
     @PutMapping("/{storyID}/stories/{sprintID}")
-    SprintsEntity addStoryToSprint(@PathVariable Long storyID, @PathVariable Long sprintID){
+    SprintsEntity addStoryToSprint(@PathVariable Long storyID, @PathVariable Long sprintID) throws SQLException {
         return sprintService.addUserStoryToSprint(storyID, sprintID);
     }
 
-    @GetMapping("/getPointsOfStories/{sprintID}")
-    int getPointOfStories(@PathVariable Long sprintID){
-        return sprintService.getUserStoryPoints(sprintID);
+    @GetMapping("/getPointsOfDoneStories/{sprintID}")
+    int getPointOfDoneStories(@PathVariable Long sprintID){
+        return sprintService.getUserStoryPointsIfStatusIsDone(sprintID);
     }
 
-    @GetMapping("/getUserStoriesBySprintId/{sprintID}")
-    Set<UserStoriesEntity> getUserStoiresBySprintId(@PathVariable Long sprintID){
-        return sprintService.getUserStoriesBySprintId(sprintID);
-    }
     @PostMapping("/updateSprintStatus")
-    SprintDto updateSprintStatus(@RequestParam Long id, @RequestParam("status") SprintStatus status) throws IOException {
+    SprintDto updateSprintStatus(@RequestParam Long id, @RequestParam("status") SprintStatus status) {
             return sprintService.updateSprintStatus(id,status);
     }
 
