@@ -49,7 +49,6 @@ public class SprintService {
                 && entity.getEnd_date()!=null && entity.getStart_date()!=null
                 && entity.getStart_date().compareTo(entity.getEnd_date())<0
                 && ifContainsEnum(entity.getStatus().toString())){
-            System.out.println("Saving ...");
             return sprintRepository.save(entity);
         }
         return null;

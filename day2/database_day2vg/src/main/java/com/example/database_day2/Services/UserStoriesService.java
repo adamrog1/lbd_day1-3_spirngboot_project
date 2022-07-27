@@ -88,7 +88,6 @@ public class UserStoriesService {
     public List<StoryDto> getUserStoriesBySprintId(Long id){
         Set<UserStoriesEntity> userStoriesEntities;
         userStoriesEntities= sprintRepository.findById(id).get().getUserStories();
-        System.out.println(userStoriesEntities);
         List<StoryDto> list;
         list=userStoriesEntities.stream().map(element-> convertService.convertEntityToDTO(element)).toList();
         return list;
