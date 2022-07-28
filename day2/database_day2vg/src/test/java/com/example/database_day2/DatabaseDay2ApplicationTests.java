@@ -4,6 +4,7 @@ import com.example.database_day2.Entity.SprintStatus;
 import com.example.database_day2.Entity.SprintsEntity;
 import com.example.database_day2.Entity.UserStoriesEntity;
 import com.example.database_day2.Entity.UserStoriesStatus;
+import com.example.database_day2.Repositories.UserStoriesRepository;
 import com.example.database_day2.Services.ConvertService;
 import com.example.database_day2.Services.UserStoriesService;
 import com.example.database_day2.Services.SprintService;
@@ -65,6 +66,25 @@ class DatabaseDay2ApplicationTests {
                 .andExpect(jsonPath("$").isMap())
                 .andExpect(jsonPath("$.status", Is.is("Canceled")));
     }
+
+    @Test
+    void testDeletingStory() throws Exception{
+        userStoriesService.generate100randomStories();
+        mockMvc.perform(MockMvcRequestBuilders.delete("/deleteStory/90"))
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    @PostConstruct
+    void testGetUserStoryDescription() throws Exception{
+        UserStoriesEntity userStory=new UserStoriesEntity("name","tak",UserStoriesStatus.In_progress,null,5);
+        userStoriesService.saveNewUserStory(userStory);
+        mockMvc.perform(MockMvcRequestBuilders.get("/getStoriesDescription/5"))
+                .andExpect(status().isOk())
+                .andExpect(content().string("tak"));
+    }
+
+
 
 //    @Test
 //    @PostConstruct
