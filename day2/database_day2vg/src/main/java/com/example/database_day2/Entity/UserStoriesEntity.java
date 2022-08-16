@@ -2,10 +2,8 @@ package com.example.database_day2.Entity;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.yaml.snakeyaml.util.ArrayUtils;
 
 import javax.persistence.*;
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 

@@ -23,13 +23,11 @@ public class SprintService {
     private UserStoriesRepository userStoriesRepository;
     private ConvertService convertService;
 
-
     public SprintService(SprintRepository sprintRepository, UserStoriesRepository userStoriesRepository, ConvertService convertService){
         this.sprintRepository=sprintRepository;
         this.userStoriesRepository=userStoriesRepository;
         this.convertService=convertService;
     }
-
 
     private boolean ifContainsEnum(String  s){
         for(SprintStatus c : SprintStatus.values()) {
@@ -44,7 +42,6 @@ public class SprintService {
 
     @Transactional
     public SprintsEntity saveNewSprint(SprintsEntity entity){
-
         if( entity.getName()!=null
                 && entity.getEnd_date()!=null && entity.getStart_date()!=null
                 && entity.getStart_date().compareTo(entity.getEnd_date())<0
@@ -88,7 +85,6 @@ public class SprintService {
         dtos.removeIf(e->e.getStart_date().before(dateFrom) );
         dtos.removeIf(e->e.getStart_date().after(dateTo));
         return dtos;
-
     }
 
 }

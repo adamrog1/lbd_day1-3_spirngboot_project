@@ -3,11 +3,6 @@ package com.example.database_day2.dto;
 import com.example.database_day2.Entity.SprintsEntity;
 import com.example.database_day2.Entity.UserStoriesStatus;
 
-import javax.persistence.Column;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 

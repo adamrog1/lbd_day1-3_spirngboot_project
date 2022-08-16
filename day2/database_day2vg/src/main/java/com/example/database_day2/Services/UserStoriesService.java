@@ -15,7 +15,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.transaction.Transactional;
 import java.io.IOException;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -35,27 +34,26 @@ public class UserStoriesService {
         this.convertService=convertService;
     }
 
-    public List<UserStoriesEntity> findAll(){
-        return (List<UserStoriesEntity>)
-                 userStoriesRepository.findAll();
+
+    public List<StoryDto> getAllStories(){
+        return  findAndconvertAll();
     }
 
     public List<StoryDto> findAndconvertAll(){
-
         List<StoryDto> storyDtos;
         storyDtos= findAll().stream().map(element->convertService.convertEntityToDTO(element)).collect(toList());
         return storyDtos;
     }
 
-    public List<StoryDto> getAllStories(){
-        return  findAndconvertAll();
+    public List<UserStoriesEntity> findAll(){
+        return (List<UserStoriesEntity>)
+                userStoriesRepository.findAll();
     }
 
     @Transactional
     public UserStoriesEntity saveNewUserStory(UserStoriesEntity entity){
         if(entity.getName()!=null && entity.getDescription()!=null){
             entity.getStatus();
-
             return userStoriesRepository.save(entity);
         }
         return null;
@@ -72,16 +70,15 @@ public class UserStoriesService {
         entity= userStoriesRepository.findById(id).get();
         entity.setAttachments(byteArr);
         userStoriesRepository.save(entity);
-
     }
+
     public void deleteStory(Long id){
         userStoriesRepository.deleteById(id);
     }
 
     public List<StoryDto> findAllPageAndSortByDate(Integer page, Integer size) {
-
-        Page<UserStoriesEntity> userStoriesEntities= userStoriesRepository.findAll(PageRequest.of(page, size,
-                        Sort.by("name")));
+        Page<UserStoriesEntity> userStoriesEntities= userStoriesRepository
+                .findAll(PageRequest.of(page, size, Sort.by("name")));
         return userStoriesEntities.getContent().stream().map(element-> convertService.convertEntityToDTO(element)).toList();
     }
 

@@ -1,8 +1,5 @@
 package com.example.database_day2.Entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.hibernate.annotations.Formula;
-
 import javax.persistence.*;
 import java.sql.Date;
 import java.util.HashSet;
